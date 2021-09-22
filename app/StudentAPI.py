@@ -48,10 +48,16 @@ def get_user(user_id):
     try:
         collection = DATABASE['students']
         user = collection.find_one({'_id': user_id}, {'_id': 0})
-        res = {
-            'data': user
-        }
-        return make_response(jsonify(res), 200)
+        if user:
+            res = {
+                'data': user
+            }
+            return make_response(jsonify(res), 200)
+        else:
+            res = {
+                'message': 'user id do not match any user in db'
+            }
+            return make_response(jsonify(res), 404)
 
     except:
         res = {
@@ -70,16 +76,14 @@ def update_user(user_id):
             new_values = {"$set": req}
             collection.update_one({'_id': user_id}, new_values)
             res = {
-                'status': 'success',
                 'message': 'updated successfully'
             }
-            return jsonify(res)
+            return make_response(jsonify(res), 200)
         else:
             res = {
-                'status': 'failure',
                 'message': 'user not found'
             }
-            return jsonify(res)
+            return make_response(jsonify(res), 404)
 
     except:
         res = {
