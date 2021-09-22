@@ -1,0 +1,26 @@
+# student
+
+
+## api/createuser post
+
+# 1. name, address, phone, city state
+# 2 json document
+# account_no: random, id other logic
+# 3 store it into mongodb
+
+## api/get_user  get
+
+# 1. username
+# retrieve information from mongodb
+# give it back 200 status code
+
+## api/update_record PUT
+# 1. account or username
+# filter the record or get the specific record from db
+# 3. update new values
+# 4.  store back to db
+
+## api/delete/user
+# remove the record from db
+
+
